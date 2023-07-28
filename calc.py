@@ -1,13 +1,10 @@
 from tkinter import *
 from tkinter import messagebox
 import keyboard
-from decimal import Decimal
-import re
 
 
 def button_typing(op):
     string.set(string.get() + op)
-    print('fuck you')
     keyboard.press_and_release('End')
 
 
@@ -23,22 +20,21 @@ def result():
         if isinstance(res, float) and res.is_integer():
             res = int(res)
         string.set(str(res))
-        print(res)
         keyboard.press_and_release('End')
-    # except SyntaxError:
-    #     text = 'Idiot! Look what you wrote!'
-    #     error_message(text)
-        # string.set('')
-    # except NameError:
-    #     text = 'Idiot! Look what you wrote!'
-    #     error_message(text)
-        # string.set('')
+    except SyntaxError:
+        text = 'Idiot! Look what you wrote!'
+        error_message(text)
+        string.set('')
+    except NameError:
+        text = 'Idiot! Look what you wrote!'
+        error_message(text)
+        string.set('')
     except ArithmeticError:
         text = 'Idiot! Learn the math!'
-        # error_message(text)
-    # except Exception:
-    #     text = 'Write something!'
-    #     error_message(text)
+        error_message(text)
+    except Exception:
+        text = 'Write something!'
+        error_message(text)
 
 
 def error_message(text):
@@ -47,7 +43,6 @@ def error_message(text):
 
 root = Tk()
 root.title('Calculator')
-# root.geometry('300x300+1000+100')
 icon = PhotoImage(file='calc.png')
 root.iconphoto(False, icon)
 root['bg'] = '#fff'
